@@ -1,24 +1,10 @@
-# bald-head-for-web
+## Whisper Space
 
-## Project setup
-```
-npm install
-```
+### 1. 动态背景插入
 
-### Compiles and hot-reloads for development
-```
-npm run serve
+1. **安装vue3-video-Play**
+
+```bash
+npm install vue3-video-play -s
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
