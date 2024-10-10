@@ -1,92 +1,71 @@
 <template>
     <ContentBase>
-
         <div class="row">
-            <div class="col-3">
-                <div class="container">
-                    <FeedInfo @follow="follow" @unfollow="unfollow" :user="user" />
-                    <FeedPosts @post_a_post="post_a_post" />
-                </div>
+            <div class="col-4">
+                <FeedInfo @follow="follow" @unfollow="unfollow" :user="user" :posts="posts" />
+                <FeedWrite @post_a_post="post_a_post" />
             </div>
-            <div class="col-9">
-                <div class="container">
-                    <FeedWrite :posts="posts" />
-                </div>
+            <div class="col-8">
+                <FeedPosts :posts="posts" />
             </div>
         </div>
     </ContentBase>
 </template>
-
 <script>
 import ContentBase from '@/components/ContentBase.vue';
 import FeedInfo from '@/components/feed/FeedInfo.vue';
 import FeedPosts from '@/components/feed/FeedPosts.vue';
 import FeedWrite from '@/components/feed/FeedWrite.vue';
 import { reactive } from 'vue';
-
 export default {
-    name: "FeedView",
+    name:'FeedView',
     components: {
         ContentBase,
         FeedInfo,
         FeedPosts,
         FeedWrite,
     },
-
     setup() {
         const user = reactive({
             id: 1,
-            userName: "Percy Bysshe Shelley",
-            lastName: "Shelley",
-            firstName: "Percy Bysshe",
-            followerCount: 0,
+            userName: "喵喵喵",
+            lastName: "喵",
+            firstName: "喵喵",
+            followerCount: 200,
             is_followed: false,
         });
-
         const posts = reactive({
-            count: 2,
+            Count: 0,
             posts: [
-                {
-                    id: 1,
-                    userId: 1,
-                    content: "If the winter comes, can Spring be far behind?"
-                },
-                {
-                    id: 2,
-                    userId: 1,
-                    content: "In the past belonged to the god of death, in the future will belong to you"
-                }
+              
             ]
         });
-
-        function follow() {
+        const follow = () => {
             if (user.is_followed) return;
             user.is_followed = true;
             user.followerCount++;
-        }
-
-        function unfollow() {
+        };
+        const unfollow = () => {
             if (!user.is_followed) return;
             user.is_followed = false;
             user.followerCount--;
-        }
-
-        function post_a_post(content) {
-            posts.count++;
+        };
+        const post_a_post = (content) => {
+            posts.Count++;
             posts.posts.unshift({
-                id: posts.count,
+                id: posts.Count,
                 userId: 1,
                 content: content,
             })
-        }
-
+        };
         return {
+            user,
             follow,
             unfollow,
-            post_a_post,
+            posts,
+            post_a_post
         }
     }
 }
 </script>
-
 <style scoped></style>
